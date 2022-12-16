@@ -28,7 +28,8 @@ public class ColumnStringTranslator implements JsonTranslator<StringBuilder> {
    public StringBuilder apply(Json json) {
       StringBuilder builder = new StringBuilder();
       for (int i = 0; i < columns.size(); ++i) {
-         builder.append(json.at(columns.get(i)).asString());
+         Json at = json.at(columns.get(i));
+         builder.append(at == null ? "": at.asString());
          if (i != columns.size() - 1) {
             builder.append(separator);
          }
